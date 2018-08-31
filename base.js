@@ -1,4 +1,4 @@
-var host = 'http://localhost:3000/api/v3';
+var host = 'http://www.deluhorse.top/api/v3';
 var wc = {
     param_dict: undefined,
 
