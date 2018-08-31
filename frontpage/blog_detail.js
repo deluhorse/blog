@@ -99,8 +99,8 @@ function create_blog_comment(e){
         api_dict.create_blog_comment,
         {
            blog_id: e.data.blog_id,
-           nick_name: $('.comment-nickname').val(),
-           comment_content: $('.js-blog-comment-content').val()
+           nick_name: encodeURIComponent($('.comment-nickname').val()),
+           comment_content: encodeURIComponent($('.js-blog-comment-content').val())
         }, function (res) {
             // 刷新评论区
             query_comment_block(e.data.blog_id);
@@ -130,20 +130,20 @@ function query_comment_block(blog_id){
             comment_dict['' + comment_item.comment_id] = comment_item;
 
             var blog_comment_item = $(`<div class="blog-comment-item" data-comment_id=${comment_item.comment_id}></div>`);
-            blog_comment_item.append(`<span style="font-size: 14px;">${comment_item.nick_name}</span>`);
+            blog_comment_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_item.nick_name)}</span>`);
             blog_comment_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">created at : ${timestamp_to_str(comment_item.create_time)}</span>`);
             blog_comment_item.append(`<div class="comment-button-group"><span>回复</span></div>`)
 
             var blog_comment_content = $('<div class="blog-comment-content"></div>');
-            blog_comment_content.append(`<p>${comment_item.comment_content}</p>`);
+            blog_comment_content.append(`<pre>${htmlDecodeJQ(comment_item.comment_content)}</pre>`);
 
             var reply_list = $('<div class="blog-comment-reply-list"></div>');
             for (let comment_reply_item of comment_item.reply_list){
 
                 var reply_item = $('<div class="blog-comment-reply-item"></div>');
-                reply_item.append(`<span style="font-size: 14px;">${comment_reply_item.nick_name}</span>`);
+                reply_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_reply_item.nick_name)}</span>`);
                 reply_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">created at : ${timestamp_to_str(comment_reply_item.create_time)}</span>`);
-                reply_item.append(`<div class="blog-comment-reply-content"><p>${comment_reply_item.reply_content}</p></div>`);
+                reply_item.append(`<div class="blog-comment-reply-content"><pre>${htmlDecodeJQ(comment_reply_item.reply_content)}</pre></div>`);
 
                 reply_list.append(reply_item);
             }
