@@ -15,6 +15,7 @@
     padding: 3%;
     padding-top: 0;
     padding-right:0;
+    position: relative;
 }
 
 .head-img {
@@ -224,4 +225,83 @@ code {
     border-radius: 3px;
     padding: 3px 5px;
     margin: 0 3px;
+}
+
+.blog-comment-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: solid 1px whitesmoke;
+}
+
+.blog-comment-content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 50px;
+}
+
+.blog-comment-reply-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: solid 1px whitesmoke;
+}
+
+.blog-comment-reply-content {
+    padding-left: 50px;
+}
+
+.blog-comment-text{
+    outline: 0;
+    border: 0;
+    line-height: 28px;
+    border-bottom: solid 1px whitesmoke;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.blog-comment-block {
+    display: none;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.blog-comment-reply-block {
+    display: none;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.js-show-blog-comment-block {
+    text-align: center;
+    cursor: pointer;
+}
+
+.js-show-blog-comment-block:hover{
+    background-color: lightgray;
+}
+
+.blog-comment-block-area {
+    width: 99%;
+    height: 100px;
+    resize: vertical;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+    outline: 0;
+    font-size: 1rem;
+}
+
+.comment-button-group {
+    float: right;
+}
+
+.comment-button-group span {
+    cursor: pointer;
+}
+
+.btn-close {
+    float: right;
+    cursor: pointer;
 }

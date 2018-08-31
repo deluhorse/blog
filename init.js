@@ -6,7 +6,8 @@
 
 var script_list = [
   '../core.js',
-  '../base.js'
+  '../base.js',
+  '../common.js'
 ];
 
 var nav_list = [
