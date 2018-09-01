@@ -1,0 +1,6 @@
+{
+  "local": "http://locahost:3000",
+  "dev": "http://www.deluhorse.top",
+  "host": "http://localhost",
+  "port": "9000"
+}

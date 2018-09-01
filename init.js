@@ -5,6 +5,7 @@
  */
 
 var script_list = [
+  '../config.js',
   '../core.js',
   '../base.js',
   '../common.js'

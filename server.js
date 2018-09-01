@@ -2,7 +2,18 @@ var http = require('http');
 var querystring = require('querystring');
 const fs = require('fs');
 var Server = {
-    run: function (port) {
+
+    init: function(local_port){
+        /**
+         * 读取配置文件
+         */
+        var result = JSON.parse(fs.readFileSync('/apps/conf/blog/blog_web.json'));
+        var remote_port = parseInt(result.port);
+        var host = result.host;
+        this.run(local_port, host, remote_port);
+
+    },
+    run: function (local_port, host, remote_port) {
         /**
          * 1. 获取请求内容
          * 2. 组织参数请求转发
@@ -36,16 +47,16 @@ var Server = {
                         'content-type': header['content-type'] || 'application/x-www-form-urlencoded; charset=UTF-8'
                     };
                     var options = {
-                        host: 'localhost',
+                        host: host,
                         path: path,
-                        port: 9000,
+                        port: remote_port,
                         method: req.method,
                         headers: headers
                     };
                     self.send_request(options, res, post_params)
                 });
             }
-        }).listen(port)
+        }).listen(local_port)
     },
     // 向服务器发出请求
     send_request: function (options, response, data) {
@@ -155,4 +166,4 @@ var Server = {
     }
 };
 
-Server.run(3000);
+Server.init(3000);
