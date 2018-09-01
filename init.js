@@ -8,7 +8,8 @@ var script_list = [
   '../config.js',
   '../core.js',
   '../base.js',
-  '../common.js'
+  '../common.js',
+  '../plugins/component/wangEditor.min.js'
 ];
 
 var nav_list = [
