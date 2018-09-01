@@ -227,6 +227,10 @@ code {
     margin: 0 3px;
 }
 
+pre {
+    overflow: auto;
+}
+
 .blog-comment-item {
     padding-top: 10px;
     padding-bottom: 10px;
