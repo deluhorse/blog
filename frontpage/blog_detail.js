@@ -8,7 +8,8 @@ var api_dict = {
     query_blog_list: '/blog/visitor/query',
     create_blog_comment: '/blog/comments/create',
     query_blog_comments: '/blog/comments/query',
-    create_blog_comments_reply: '/blog/comments/reply/create'
+    create_blog_comments_reply: '/blog/comments/reply/create',
+    update_read_nums: '/blog/read_nums/update'
 };
 
 var comment_dict = {};
@@ -88,6 +89,18 @@ function query_blog_detail(blog_id) {
         $('.article-title').text(blog.title);
 
         $('.article-content').html(blog.content);
+
+        update_read_nums(blog_id);
+    });
+}
+
+/**
+ * 更新博文阅读人数
+ * @param blog_id
+ */
+function update_read_nums(blog_id) {
+    wc._post(api_dict.update_read_nums, {blog_id: blog_id}, function (res) {
+        $('.js-read-nums').text(`阅读人数${res.data.read_nums}`);
     });
 }
 
@@ -123,7 +136,7 @@ function query_comment_block(blog_id){
 
         $('.blog-comment-list').empty();
 
-        $('.blog-comment-list').append('<h3>评论</h3>');
+        $('.blog-comment-list').append(`<h3>评论(${res.data.length})</h3>`);
 
         for (let comment_item of res.data){
 
