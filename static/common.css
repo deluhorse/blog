@@ -137,6 +137,7 @@
     font-size: 20px;
     text-align: center;
     font-weight: bold;
+    width: 100%;
 }
 
 .nav-item {
@@ -308,4 +309,34 @@ pre {
 .btn-close {
     float: right;
     cursor: pointer;
+}
+
+.tool-bar {
+    border: 1px solid #ccc;
+}
+
+#editor-content {
+    width: 900px;
+    margin: auto;
+    min-height: 1172px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.editor-wrapper {
+    background-color: whitesmoke;
+}
+
+.div-article-title {
+    background-color: #fff;
+    height: 50px;
+    width: 900px;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+    border-bottom: solid 1px #ccc;
 }

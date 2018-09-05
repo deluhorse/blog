@@ -5,13 +5,23 @@
  */
 var api_dict = {
     query_blog: '/blog/query',
-    delete_blog: '/blog/delete'
+    delete_blog: '/blog/delete',
+    create_blog: '/blog/create'
 };
 
 $(function () {
 
     $('#btn-create-blog').on('click', function (e) {
-        location.assign('blog_new.html');
+
+        wc._post(
+                api_dict.create_blog,
+                {
+                    content: '<p><br></p>'
+                },function (res) {
+                    var blog_id = res.data.blog_id;
+                    location.assign(`blog_new.html?blog_id=${blog_id}`);
+                }
+            );
     });
 
     query_blog_list();
@@ -41,7 +51,7 @@ function query_blog_list() {
 
             var blog_id = $(e.currentTarget).parent().parent().data('blog_id');
 
-            location.assign(`blog_edit.html?blog_id=${blog_id}`);
+            location.assign(`blog_new.html?blog_id=${blog_id}`);
         });
 
         $('.btn-blog-delete').on('click', function (e) {
