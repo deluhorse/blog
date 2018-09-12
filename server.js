@@ -131,38 +131,46 @@ var Server = {
         var url = path.split('?')[0];
         if (url.endsWith('.html') || url.endsWith('.css') || url.endsWith('.js') ||
             url.endsWith('.ico') || url.endsWith('.jpg') || url.endsWith('.woff2') ||
-            url.endsWith('.woff') || url.endsWith('.ttf') || url.endsWith('.png')){
+            url.endsWith('.woff') || url.endsWith('.ttf') || url.endsWith('.png') ||
+            url.endsWith('.svg') || url.endsWith('.eot') || url.endsWith('.otf')){
             return true;
         } else{
             return false;
         }
     },
     check_binary: function (url) {
-        if (url.endsWith('.jpg') || url.endsWith('.ico')){
+        if (url.endsWith('.jpg') || url.endsWith('.ico') || url.endsWith('.woff2' ||
+            url.endsWith('.woff') || url.endsWith('.tff') || url.endsWith('.eot') ||
+            url.endsWith('.otf'))){
             return true;
         } else{
             return false;
         }
     },
     static_content_type: {
-        "css": "text/css",
-        "gif": "image/gif",
-        "html": "text/html",
-        "ico": "image/x-icon",
-        "jpeg": "image/jpeg",
-        "jpg": "image/jpeg",
-        "js": "text/javascript",
-        "json": "application/json",
-        "pdf": "application/pdf",
-        "png": "image/png",
-        "svg": "image/svg+xml",
-        "swf": "application/x-shockwave-flash",
-        "tiff": "image/tiff",
-        "txt": "text/plain",
-        "wav": "audio/x-wav",
-        "wma": "audio/x-ms-wma",
-        "wmv": "video/x-ms-wmv",
-        "xml": "text/xml"
+        'css': 'text/css',
+        'gif': 'image/gif',
+        'html': 'text/html',
+        'ico': 'image/x-icon',
+        'jpeg': 'image/jpeg',
+        'jpg': 'image/jpeg',
+        'js': 'text/javascript',
+        'json': 'application/json',
+        'pdf': 'application/pdf',
+        'png': 'image/png',
+        'svg': 'image/svg+xml',
+        'swf': 'application/x-shockwave-flash',
+        'tiff': 'image/tiff',
+        'txt': 'text/plain',
+        'wav': 'audio/x-wav',
+        'wma': 'audio/x-ms-wma',
+        'wmv': 'video/x-ms-wmv',
+        'xml': 'text/xml',
+        'woff2': 'application/font-woff2',
+        'otf': 'application/x-font-opentype',
+        'ttf': 'application/octet-stream',
+        'woff': 'application/font-woff',
+        'eot': 'application/vnd.ms-fontobject'
     }
 };
 

@@ -340,3 +340,27 @@ body::-webkit-scrollbar {
     margin: auto;
     border-bottom: solid 1px #ccc;
 }
+
+.mind-manager-content ul {
+    list-style-type: none;
+}
+
+.mind-manager-content li {
+    margin: 10px 0;
+}
+
+.mind-manager-content span {
+    cursor: pointer;
+}
+
+.mind-manager-content span:hover{
+    text-decoration: underline;
+}
+
+.mind-manager-operate-group {
+    display: inline-block;
+}
+
+.mind-manager-content {
+    padding: 15px;
+}
