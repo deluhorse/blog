@@ -389,3 +389,39 @@ body::-webkit-scrollbar {
     background-color: yellowgreen;
     border-radius: 5px;
 }
+
+.login-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: whitesmoke;
+    width:50%;
+    height: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    background-image: url("http://oom122w4d.bkt.clouddn.com/2dcbeec0-8e78-0d58-6a78-46348176");
+    background-size:100% 100%;
+}
+
+.login-content .login-input{
+    width: 20rem;
+    line-height: 25px;
+    outline: none;
+    border: solid 1px white;
+    font-size: 100%;
+    margin-left: 30px;
+}
+
+.login-head {
+    text-align: center;
+}
+
+.login-input-group {
+    text-align: center;
+}
+
+#btn-login {
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    font-size: 100px;
+}
