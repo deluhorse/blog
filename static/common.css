@@ -137,7 +137,7 @@
     font-size: 20px;
     text-align: center;
     font-weight: bold;
-    width: 100%;
+    width: 90%;
 }
 
 .nav-item {
@@ -333,12 +333,10 @@ body::-webkit-scrollbar {
 
 .div-article-title {
     background-color: #fff;
-    height: 50px;
     width: 900px;
     text-align: center;
     padding-top: 20px;
     margin: auto;
-    border-bottom: solid 1px #ccc;
 }
 
 .mind-manager-content ul {
@@ -349,16 +347,30 @@ body::-webkit-scrollbar {
     margin: 10px 0;
 }
 
-.mind-manager-content span {
-    cursor: pointer;
+.mind-manager-content ul {
+    padding-left: 20px;
+    margin-left: 20px;
+    border-left: dashed 1px #ccc;
 }
 
-.mind-manager-content span:hover{
+.mind-manager-content .tag {
+    float: left;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.mind-manager-content .tag:hover{
     text-decoration: underline;
 }
 
 .mind-manager-operate-group {
     display: inline-block;
+    padding: 5px;
+}
+
+.mind-manager-operate-group button {
+    margin-left: 10px;
 }
 
 .mind-manager-content {

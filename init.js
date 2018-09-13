@@ -30,8 +30,8 @@ var nav_list = [
         name: '更新日志'
     },
     {
-        src: 'mind_manager.html',
-        name: '知识图谱'
+        src: 'group_manager.html',
+        name: '分组管理'
     }
 ];
 

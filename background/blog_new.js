@@ -6,7 +6,8 @@
 
 var api_dict = {
     query_blog_detail: '/blog/detail/query',
-    create_blog: '/blog/create'
+    create_blog: '/blog/create',
+    query_leaf_list: '/blog/group/leaf/query'
 };
 
 $(function () {
@@ -27,7 +28,11 @@ $(function () {
         mutations.forEach(function(mutation) {
             return
         });
-        save_blog(blog_id, editor);
+        save_blog({
+            blog_id: blog_id,
+            title: $('.js-article-title').val(),
+            content: encodeURIComponent(editor.txt.html())
+        });
     });
 
     var options = {
@@ -38,6 +43,20 @@ $(function () {
     } ;
 
     observer.observe($('.editor-wrapper').get(0), options);
+
+    $('.group-list').on('change', function (e) {
+
+        var $target = $(e.currentTarget);
+
+        console.log($target.val());
+
+        save_blog({
+            blog_id: blog_id,
+            group_id: $target.val()
+        },function (res) {
+            console.log('update group success');
+        })
+    });
 });
 
 /**
@@ -55,6 +74,7 @@ function query_blog_detail(blog_id, editor) {
 
         editor.txt.html(res.data.content);
 
+        query_leaf(res.data.group_id);
     });
 }
 
@@ -62,16 +82,33 @@ function query_blog_detail(blog_id, editor) {
  * 保存博文
  * @param blog_id
  */
-function save_blog(blog_id, editor){
+function save_blog(params){
 
     wc._post(
         api_dict.create_blog,
-        {
-            blog_id: blog_id,
-            title: $('.js-article-title').val(),
-            content: encodeURIComponent(editor.txt.html())
-        },function (res) {
+        params,
+        function (res) {
             console.log('auto save success');
         }
     );
+}
+
+function query_leaf(group_id) {
+    wc._get(api_dict.query_leaf_list, {}, function (res) {
+
+        $('.group-list').html('<option value="0" selected="selected">未分组</option>')
+
+        for (let group of res.data){
+
+            if (group.group_id === group_id){
+
+                $('.group-list').append(`<option value=${group.group_id} selected="selected">${group.path}</option>`);
+
+            } else {
+
+                $('.group-list').append(`<option value=${group.group_id}>${group.path}</option>`);
+            }
+
+        }
+    });
 }

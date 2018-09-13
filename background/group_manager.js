@@ -10,6 +10,17 @@ var api_dict = {
     update_group: '/blog/group/update'
 };
 
+// 不同深度显示的颜色不同
+var tag_color_dict = {
+    '1': {'background-color': 'cornflowerblue', 'color': 'white'},
+    '2': {'background-color': 'greenyellow'},
+    '3': {'background-color': 'mistyrose'},
+    '4': {},
+    '5': {},
+    '6': {},
+    '7': {}
+};
+
 $(function (e) {
 
     $('.mind-manager-content').delegate('.mind-manager-btn-expand', 'click', function (e) {
@@ -20,7 +31,7 @@ $(function (e) {
         }
     });
 
-    $('.mind-manager-content').delegate('span', 'blur', function (e) {
+    $('.mind-manager-content').delegate('.tag', 'blur', function (e) {
         var $target = $(e.currentTarget);
 
         wc._post(api_dict.update_group,
@@ -48,7 +59,7 @@ $(function (e) {
 
                         var $li = $('<li></li>');
 
-                        var $span = $(`<span contenteditable="true" data-group_id=${res.data.last_id}>新节点</span>`);
+                        var $tag = $(`<div contenteditable="true" class="tag" data-group_id=${res.data.last_id}>新节点</div>`);
 
                         var $div = $('<div class="mind-manager-operate-group"></div>');
 
@@ -56,7 +67,9 @@ $(function (e) {
                         $div.append(`<button class="mind-manager-btn-remove" data-group_id=${res.data.last_id}>remove</button>`);
                         $div.append('<button class="mind-manager-btn-expand">expand</button>');
 
-                        $li.append($span);
+                        $tag.css({'background-color': tag_color_dict['' + res.data.height]});
+
+                        $li.append($tag);
                         $li.append($div);
                         $li.append('<ul></ul>');
 
@@ -103,7 +116,7 @@ function build_sub_group(group, sub_group_list) {
 
         var $li = $('<li></li>');
 
-        var $span = $(`<span contenteditable="true" data-group_id=${sub_group.group_id}>${sub_group.group_name}</span>`);
+        var $tag = $(`<div contenteditable="true" class="tag" data-group_id=${sub_group.group_id}>${sub_group.group_name}</div>`);
 
         var $div = $('<div class="mind-manager-operate-group"></div>');
 
@@ -111,13 +124,14 @@ function build_sub_group(group, sub_group_list) {
         $div.append(`<button class="mind-manager-btn-remove" data-group_id=${sub_group.group_id}>remove</button>`);
         $div.append('<button class="mind-manager-btn-expand">expand</button>');
 
-        $li.append($span);
+        $tag.css(tag_color_dict['' + sub_group.height]);
+        $li.append($tag);
         $li.append($div);
 
         var $ul = $('<ul></ul>');
 
         if (sub_group.sub_group_list.length > 0){
-            $span.css({'background-color': '#ddd'});
+
             build_sub_group($ul, sub_group.sub_group_list);
         }
 
