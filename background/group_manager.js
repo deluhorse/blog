@@ -67,7 +67,7 @@ $(function (e) {
                         $div.append(`<button class="mind-manager-btn-remove" data-group_id=${res.data.last_id}>remove</button>`);
                         $div.append('<button class="mind-manager-btn-expand">expand</button>');
 
-                        $tag.css({'background-color': tag_color_dict['' + res.data.height]});
+                        $tag.css(tag_color_dict['' + res.data.height]);
 
                         $li.append($tag);
                         $li.append($div);
