@@ -15,10 +15,13 @@ var tag_color_dict = {
     '1': {'background-color': 'cornflowerblue', 'color': 'white'},
     '2': {'background-color': 'greenyellow'},
     '3': {'background-color': 'mistyrose'},
-    '4': {},
-    '5': {},
-    '6': {},
-    '7': {}
+    '4': {'background-color': 'navajowhite'},
+    '5': {'background-color': 'powderblue'},
+    '6': {'background-color': 'yellow'},
+    '7': {'background-color': 'rosybrown', 'color': 'white'},
+    '8': {'background-color': 'sandybrown', 'color': 'white'},
+    '9': {},
+    '10': {}
 };
 
 $(function (e) {
@@ -36,11 +39,60 @@ $(function (e) {
 
         wc._post(api_dict.update_group,
             {
-                group_id: $target.data('group_id'),
-                group_name: $target.text()
+                group_id: $target.parent().data('group_id'),
+                group_name: $target.val()
             }, function (res) {
                 console.log(res);
             });
+    });
+
+    $('.mind-manager-content').delegate('.tag', 'keypress', function (e) {
+
+        if (e.keyCode == 13){
+
+            var $target = $(e.currentTarget);
+
+            wc._post(api_dict.update_group,
+                {
+                    group_id: $target.parent().data('group_id'),
+                    group_name: $target.val()
+                }, function (res) {
+                    console.log(res);
+                });
+        }
+    });
+
+    $('.mind-manager-content').delegate('.tag', 'mouseover', function (e) {
+
+        var $target = $(e.currentTarget);
+
+        $target.parent().next().show();
+    });
+
+    $('.mind-manager-content').delegate('.tag', 'mouseout', function (e) {
+
+        var $target = $(e.currentTarget);
+
+        $target.parent().next().hide();
+    });
+
+    $('.mind-manager-content').delegate('.mind-manager-operate-group', 'mouseover', function (e) {
+
+        var $target = $(e.currentTarget);
+
+        $target.show();
+    });
+
+    $('.mind-manager-content').delegate('.mind-manager-operate-group', 'mouseout', function (e) {
+
+        var $target = $(e.currentTarget);
+
+        $target.hide();
+    });
+
+    $('.root-group').on('mouseover', function (e) {
+
+        $('.root-group').next().show();
     });
 
     /**
@@ -59,15 +111,17 @@ $(function (e) {
 
                         var $li = $('<li></li>');
 
-                        var $tag = $(`<div contenteditable="true" class="tag" data-group_id=${res.data.last_id}>新节点</div>`);
+                        var $input = $(`<input type="text" class="tag" value="新节点">`);
+                        $input.css(tag_color_dict['' + res.data.height]);
+
+                        var $tag = $(`<div data-group_id=${res.data.last_id} class="fl" ></div>`);
+                        $tag.append($input);
 
                         var $div = $('<div class="mind-manager-operate-group"></div>');
 
                         $div.append(`<button class="mind-manager-btn-add" data-group_id=${res.data.last_id}>add</button>`);
                         $div.append(`<button class="mind-manager-btn-remove" data-group_id=${res.data.last_id}>remove</button>`);
                         $div.append('<button class="mind-manager-btn-expand">expand</button>');
-
-                        $tag.css(tag_color_dict['' + res.data.height]);
 
                         $li.append($tag);
                         $li.append($div);
@@ -116,7 +170,11 @@ function build_sub_group(group, sub_group_list) {
 
         var $li = $('<li></li>');
 
-        var $tag = $(`<div contenteditable="true" class="tag" data-group_id=${sub_group.group_id}>${sub_group.group_name}</div>`);
+        var $tag = $(`<input type="text" class="tag" value="${sub_group.group_name}">`);
+        $tag.css(tag_color_dict['' + sub_group.height]);
+
+        var $div_tag = $(`<div data-group_id=${sub_group.group_id} class="fl"></div>`);
+        $div_tag.append($tag);
 
         var $div = $('<div class="mind-manager-operate-group"></div>');
 
@@ -124,8 +182,8 @@ function build_sub_group(group, sub_group_list) {
         $div.append(`<button class="mind-manager-btn-remove" data-group_id=${sub_group.group_id}>remove</button>`);
         $div.append('<button class="mind-manager-btn-expand">expand</button>');
 
-        $tag.css(tag_color_dict['' + sub_group.height]);
-        $li.append($tag);
+
+        $li.append($div_tag);
         $li.append($div);
 
         var $ul = $('<ul></ul>');
