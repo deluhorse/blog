@@ -354,10 +354,14 @@ body::-webkit-scrollbar {
 }
 
 .mind-manager-content .tag {
-    float: left;
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+    width: auto;
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    outline: none;
 }
 
 .mind-manager-content .tag:hover{
@@ -366,7 +370,6 @@ body::-webkit-scrollbar {
 
 .mind-manager-operate-group {
     display: inline-block;
-    padding: 5px;
 }
 
 .mind-manager-operate-group button {
@@ -375,4 +378,14 @@ body::-webkit-scrollbar {
 
 .mind-manager-content {
     padding: 15px;
+}
+
+.fl {
+    display: inline-block;
+}
+
+.root-group {
+    padding: 5px;
+    background-color: yellowgreen;
+    border-radius: 5px;
 }
