@@ -1,0 +1,46 @@
+@media screen and (max-width:800px){
+    .left-content {
+        text-align: center;
+        background-image: url(http://oom122w4d.bkt.clouddn.com/b48cacab-fdc4-dce0-1cb5-7129d00b);
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        width: 100%;
+        display: flow-root;
+    }
+
+    .head-img {
+        margin-top: 10%;
+    }
+
+    .main-content {
+        margin: auto;
+        padding: 3%;
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer {
+        width: 100%;
+        position: relative;
+        margin-top: 2rem;
+    }
+
+    .article {
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+    .blog-comment-block {
+        padding: 5px;
+    }
+
+    .blog-comment-text {
+         margin-right: 0;
+    }
+
+    .js-blog-comment-create{
+        padding: 0;
+    }
+}

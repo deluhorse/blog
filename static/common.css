@@ -3,7 +3,7 @@
     height: 100%;
     text-align: center;
     position: fixed;
-    background-image: url(http://oom122w4d.bkt.clouddn.com/2c1602c0-1187-20a1-ddcd-83d1df9c);
+    background-image: url(http://oom122w4d.bkt.clouddn.com/b48cacab-fdc4-dce0-1cb5-7129d00b);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -35,6 +35,7 @@
     margin-top: 1rem;
     text-align: center;
     cursor: pointer;
+    border-bottom: solid 1px whitesmoke;
 }
 
 .article:hover {
@@ -208,6 +209,10 @@ footer {
     bottom: 5px;
     width: 100%;
     text-align: center;
+}
+
+.footer {
+    width: 65%;
 }
 
 .blog_list_show {
