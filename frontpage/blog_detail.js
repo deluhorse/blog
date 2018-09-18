@@ -176,7 +176,7 @@ function query_comment_block(blog_id){
                 }
 
                 reply_item.append(`<img src=${reply_head_img} style="width: 3rem;height: 3rem;border-radius: 2rem;margin-right: 1rem;">`);
-                if (!reply_item.website){
+                if (!comment_reply_item.website){
                     reply_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_reply_item.nick_name)}</span>`);
                 } else {
                     reply_item.append(`<span style="font-size: 14px;"><a href=${htmlDecodeJQ(comment_reply_item.website)}>${htmlDecodeJQ(comment_reply_item.nick_name)}</a></span>`);
@@ -213,6 +213,7 @@ function query_comment_block(blog_id){
 
             $('.js-blog-reply-content').attr('placeholder', `@${comment_nickname}`);
         });
+        hide_comment_block();
 
         $('.blog-comment-list').find('img').on('error', function(e){
             var $target = $(e.currentTarget);
