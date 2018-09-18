@@ -264,14 +264,15 @@ pre {
     border: 0;
     line-height: 28px;
     border-bottom: solid 1px whitesmoke;
-    margin-left: 10px;
     margin-right: 10px;
     font-size: 1rem;
+    width: 60%;
+    padding-left: 0.5rem;
 }
 
 .blog-comment-block {
     display: none;
-    padding: 20px;
+    padding: 2rem;
     background-color: whitesmoke;
     border-radius: 10px;
 }
@@ -301,6 +302,8 @@ pre {
     border: 0px;
     outline: 0;
     font-size: 1rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .comment-button-group {
@@ -312,8 +315,11 @@ pre {
 }
 
 .btn-close {
-    float: right;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    background-color: powderblue;
     cursor: pointer;
+    margin-left: 2rem;
 }
 
 .tool-bar {
@@ -429,4 +435,22 @@ body::-webkit-scrollbar {
     width: 100px;
     height: 100%;
     font-size: 100px;
+}
+
+.js-blog-comment-create {
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    background-color: powderblue;
+    cursor: pointer;
+}
+
+.my-button {
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    background-color: powderblue;
+    cursor: pointer;
+}
+
+.blog-comment-list a {
+    text-decoration: none;
 }
