@@ -11,13 +11,23 @@ var api_dict = {
 $(function (e) {
 
     $('#btn-login').on('click', function () {
-        wc._post(
-            api_dict.login,
-            {
-                user_name: $('#username').val(),
-                password: $('#password').val()
-            }, function (res) {
-                location.assign('index.html');
-            });
+        login();
+    });
+
+    $('#password').on('keydown', function (e) {
+        if (e.keyCode === 13){
+            login()
+        }
     });
 });
+
+function login(){
+    wc._post(
+        api_dict.login,
+        {
+            user_name: $('#username').val(),
+            password: $('#password').val()
+        }, function (res) {
+            location.assign('index.html');
+        });
+}
