@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>资源库</title>
+    <link rel="stylesheet" href="../static/common.css">
+</head>
+<body>
+<div class="navigation"></div>
+<div class="photo-upload">
+    <form id="file_upload" name="file_upload" method="post" action="http://localhost:3000/api/v3/photo/upload/create" enctype="multipart/form-data">
+        <p style="padding-left: 15px;">图片预览</p>
+        <ul id="photo_list"></ul>
+        <div id="photo_preview"></div>
+        <input id="photo_upload" type="button" value="上传文件">
+    </form>
+</div>
+<script src="../plugins/jquery.min.js"></script>
+<script src="../init.js"></script>
+<script src="../plugins/component/moxie.js"></script>
+<script src="../plugins/component/plupload.js"></script>
+<script src="../plugins/component/qiniu.js"></script>
+<script src="../plugins/component/local_qiniu.js"></script>
+<script src="photo.js"></script>
+</body>
+</html>

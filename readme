@@ -1,0 +1,7 @@
+final_product文件夹下是最终编译好的文件，用于服务器部署
+
+v1版本用传统的html + jquery开发的多页面版本
+
+v2版本用vue + bootstrap开发的单页面版本
+
+v3版本换
