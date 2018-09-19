@@ -32,15 +32,7 @@
         padding: 1rem 0;
     }
 
-    .blog-comment-block {
-        padding: 5px;
-    }
-
     .blog-comment-text {
          margin-right: 0;
-    }
-
-    .js-blog-comment-create{
-        padding: 0;
     }
 }

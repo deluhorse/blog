@@ -13,7 +13,7 @@ var api_dict = {
 };
 
 var comment_dict = {};
-
+var default_visitor_head_img = 'http://oom122w4d.bkt.clouddn.com/2dcbeec0-8e78-0d58-6a78-46348176';
 $(function () {
     /**
      * 首次进入博客列表，则调用接口显示博文列表
@@ -64,8 +64,10 @@ $(function () {
             {
                 blog_id: comment_item.blog_id,
                 comment_id: comment_item.comment_id,
-                nick_name: $('.reply-nickname').val(),
-                reply_content: $('.js-blog-reply-content').val()
+                nick_name: encodeURIComponent($('.reply-nickname').val()),
+                reply_content: encodeURIComponent($('.js-blog-reply-content').val()),
+                email: encodeURIComponent($('.reply-email').val()),
+                website: encodeURIComponent($('.reply-website').val())
             },
             function (res) {
                 query_comment_block(comment_item.blog_id);
@@ -113,7 +115,9 @@ function create_blog_comment(e){
         {
            blog_id: e.data.blog_id,
            nick_name: encodeURIComponent($('.comment-nickname').val()),
-           comment_content: encodeURIComponent($('.js-blog-comment-content').val())
+           comment_content: encodeURIComponent($('.js-blog-comment-content').val()),
+           email: encodeURIComponent($('.comment-email').val()),
+           website: encodeURIComponent($('.comment-website').val())
         }, function (res) {
             // 刷新评论区
             query_comment_block(e.data.blog_id);
@@ -143,8 +147,18 @@ function query_comment_block(blog_id){
             comment_dict['' + comment_item.comment_id] = comment_item;
 
             var blog_comment_item = $(`<div class="blog-comment-item" data-comment_id=${comment_item.comment_id}></div>`);
-            blog_comment_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_item.nick_name)}</span>`);
-            blog_comment_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">created at : ${timestamp_to_str(comment_item.create_time)}</span>`);
+            var head_img = default_visitor_head_img;
+
+            if (comment_item.email){
+                head_img = `"https://cn.gravatar.com/avatar/${$.md5(comment_item.email)}?d=404"`;
+            }
+            blog_comment_item.append(`<img src=${head_img} style="width: 3rem;height: 3rem;border-radius: 2rem;margin-right: 1rem;">`);
+            if (!comment_item.website){
+                blog_comment_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_item.nick_name)}</span>`);
+            } else {
+                blog_comment_item.append(`<span style="font-size: 14px;"><a href=${htmlDecodeJQ(comment_item.website)}>${htmlDecodeJQ(comment_item.nick_name)}</a></span>`);
+            }
+            blog_comment_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">${timestamp_to_str(comment_item.create_time)}</span>`);
             blog_comment_item.append(`<div class="comment-button-group"><span>回复</span></div>`)
 
             var blog_comment_content = $('<div class="blog-comment-content"></div>');
@@ -154,8 +168,20 @@ function query_comment_block(blog_id){
             for (let comment_reply_item of comment_item.reply_list){
 
                 var reply_item = $('<div class="blog-comment-reply-item"></div>');
-                reply_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_reply_item.nick_name)}</span>`);
-                reply_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">created at : ${timestamp_to_str(comment_reply_item.create_time)}</span>`);
+
+                var reply_head_img = default_visitor_head_img;
+
+                if (comment_reply_item.email){
+                    reply_head_img = `"https://cn.gravatar.com/avatar/${$.md5(comment_reply_item.email)}?d=404"`;
+                }
+
+                reply_item.append(`<img src=${reply_head_img} style="width: 3rem;height: 3rem;border-radius: 2rem;margin-right: 1rem;">`);
+                if (!comment_reply_item.website){
+                    reply_item.append(`<span style="font-size: 14px;">${htmlDecodeJQ(comment_reply_item.nick_name)}</span>`);
+                } else {
+                    reply_item.append(`<span style="font-size: 14px;"><a href=${htmlDecodeJQ(comment_reply_item.website)}>${htmlDecodeJQ(comment_reply_item.nick_name)}</a></span>`);
+                }
+                reply_item.append(`<span style="font-size: 10px;color: powderblue;margin-left: 10px;">${timestamp_to_str(comment_reply_item.create_time)}</span>`);
                 reply_item.append(`<div class="blog-comment-reply-content"><pre>${htmlDecodeJQ(comment_reply_item.reply_content)}</pre></div>`);
 
                 reply_list.append(reply_item);
@@ -173,7 +199,7 @@ function query_comment_block(blog_id){
              * 显示回复区并传入comment_id
              * @type {jQuery|HTMLElement}
              */
-            $target = $(e.currentTarget);
+            var $target = $(e.currentTarget);
 
             var comment_id = $target.parent().parent().data('comment_id');
 
@@ -186,6 +212,13 @@ function query_comment_block(blog_id){
             var comment_nickname = comment_item.nick_name;
 
             $('.js-blog-reply-content').attr('placeholder', `@${comment_nickname}`);
+        });
+        hide_comment_block();
+
+        $('.blog-comment-list').find('img').on('error', function(e){
+            var $target = $(e.currentTarget);
+
+            $target.attr('src', default_visitor_head_img);
         });
     });
 }

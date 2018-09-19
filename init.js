@@ -9,7 +9,8 @@ var script_list = [
   '../core.js',
   '../base.js',
   '../common.js',
-  '../plugins/component/wangEditor.min.js'
+  '../plugins/component/wangEditor.min.js',
+  '../plugins/md5.js'
 ];
 
 var nav_list = [

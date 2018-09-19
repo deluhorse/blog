@@ -25,50 +25,60 @@
 </div>
 <div class="main-content">
     <div class="main-category">
-        <input type="button" value="目录" style="float: right">
         <span class="js-read-nums"></span>
+        <span class="my-button">目录</span>
     </div>
     <h3 class="article-title" style="text-align: center"></h3>
     <p class="article-content"></p>
     <div class="blog-comment-list">
         <h3>评论</h3>
-        <!--<div class="blog-comment-item">-->
-            <!--<span style="font-size: 16px;">deluhorse</span>-->
-            <!--<span style="font-size: 10px;color: powderblue;">created at : 2018-08-31 15:40</span>-->
-            <!--<div class="blog-comment-content">-->
-                <!--<p>评论内容</p>-->
-                <!--<div class="blog-comment-reply-list">-->
-                    <!--<div class="blog-comment-reply-item">-->
-                        <!--<span style="font-size: 16px;">deluhorse</span>-->
-                        <!--<span style="font-size: 10px;color: powderblue;">created at : 2018-08-31 15:40</span>-->
-                        <!--<div class="blog-comment-reply-content">-->
-                            <!--<p>回复内容</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
     <div class="blog-comment-block">
         <div style="margin-bottom: 15px;">
-            <span>昵称: </span>
             <span><input type="text" class="blog-comment-text comment-nickname" placeholder="尊姓大名"></span>
-            <span><input type="button" class="js-blog-comment-create" value="发表评论"></span>
-            <span class="btn-close js-comment_close">关闭</span>
+            <span>昵称(必填)</span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <span><input type="text" class="blog-comment-text comment-email" placeholder="邮箱"></span>
+            <span>邮箱(必填)</span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <span><input type="text" class="blog-comment-text comment-website" placeholder="个人站点"></span>
+            <span>个人网站</span>
         </div>
         <div>
             <textarea class="js-blog-comment-content blog-comment-block-area" placeholder="你也来说两句吧"></textarea>
         </div>
+        <div style="margin-top: 2rem">
+            <span class="js-blog-comment-create">发表评论</span>
+            <span class="btn-close js-comment_close">关闭</span>
+        </div>
     </div>
     <div class="blog-comment-reply-block">
         <div style="margin-bottom: 15px;">
-            <span>昵称: </span>
             <span><input type="text" class="blog-comment-text reply-nickname" placeholder="尊姓大名"></span>
-            <span><input type="button" class="js-blog-reply-create" value="发表回复"></span>
-            <span class="btn-close js-reply_close">关闭</span>
+            <span>昵称(必填)</span>
         </div>
+        <div style="margin-bottom: 15px;">
+            <span><input type="text" class="blog-comment-text reply-email" placeholder="邮箱"></span>
+            <span>邮箱(必填)</span>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <span><input type="text" class="blog-comment-text reply-website" placeholder="个人站点"></span>
+            <span>个人网站</span>
+        </div>
+        <!--<div style="margin-bottom: 15px;">-->
+            <!--<span>昵称: </span>-->
+            <!--<span><input type="text" class="blog-comment-text reply-nickname" placeholder="尊姓大名"></span>-->
+            <!--<span><input type="button" class="js-blog-reply-create" value="发表回复"></span>-->
+            <!--<span class="btn-close js-reply_close">关闭</span>-->
+        <!--</div>-->
         <div>
             <textarea class="js-blog-reply-content blog-comment-block-area" placeholder="你也来说两句吧"></textarea>
+        </div>
+        <div style="margin-top: 2rem">
+            <span class="js-blog-reply-create my-button">发表回复</span>
+            <span class="btn-close js-reply_close">关闭</span>
         </div>
     </div>
     <div class="js-show-blog-comment-block show-blog-comment-block">
