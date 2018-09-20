@@ -1,12 +1,28 @@
-Qiniu_upload.initUpload({
-    btnId: 'photo_upload',
-    domain: 'http://oom122w4d.bkt.clouddn.com/',
-    containerId: 'photo_preview',
-    callback: function (params) {
-        wc._post('/photo/create', params, query_photo);
+var app = new Vue({
+    el: '#app',
+    data: function() {
+        return {
+            action: host + '/photo/upload/create',
+            visible: false,
+            activeIndex: '2',
+            dialogImageUrl: '',
+            dialogVisible: false,
+            fileList: []
+        }
+    },
+    methods: {
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePictureCardPreview(file) {
+            this.dialogImageUrl = file.url;
+            this.dialogVisible = true;
+        }
     }
 });
-
 // 显示图片列表
 function query_photo(){
     // 向后端请求图片数据
@@ -14,10 +30,18 @@ function query_photo(){
 
         $('#photo_list').empty();
 
+        var file_list = [];
+
         for (let photo of res.data){
 
-            $('#photo_list').append(`<li class="photo-item"><div style="height: 100%;"><img class="photo-display" src=${photo.img_url} /></div></li>`)
+            $('#photo_list').append(`<li class="photo-item"><div style="height: 100%;"><img class="photo-display" src=${photo.img_url} /></div></li>`);
+
+            file_list.push({
+               name: photo.nick_name,
+               url: photo.img_url
+            });
         }
+        app.fileList = file_list;
     });
 }
 
