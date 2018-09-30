@@ -10,39 +10,45 @@ var api_dict = {
     query_leaf_list: '/blog/group/leaf/query'
 };
 
+var app = new Vue({
+    el: '#app',
+    data: function() {
+        return {
+            activeIndex: '1',
+            blog_list: []
+        }
+    },
+    methods: {
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        query_blog_detail(blog_id){
+            location.assign(`blog_edit.html?blog_id=${blog_id}`);
+        }
+    }
+});
+
 $(function () {
 
     var blog_id = wc.get_params().blog_id;
 
     var E = window.wangEditor;
 
-    var editor = new E('#tool-bar', '#editor-content');
+    var editor = new E('.tool-bar', '.editor-content');
 
     editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+
+    editor.customConfig.onchange = function (html) {
+            save_blog({
+                blog_id: blog_id,
+                title: $('.js-article-title').val(),
+                content: encodeURIComponent(html)
+            });
+    };
 
     editor.create();
 
     query_blog_detail(blog_id, editor);
-
-    var observer = new MutationObserver(function (mutations, observer) {
-        mutations.forEach(function(mutation) {
-            return
-        });
-        save_blog({
-            blog_id: blog_id,
-            title: $('.js-article-title').val(),
-            content: encodeURIComponent(editor.txt.html())
-        });
-    });
-
-    var options = {
-        attributes: true,
-        characterData: true,
-        childList: true,
-        subtree: true
-    } ;
-
-    observer.observe($('.editor-wrapper').get(0), options);
 
     $('.group-list').on('change', function (e) {
 

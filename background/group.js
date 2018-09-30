@@ -10,6 +10,20 @@ var api_dict = {
     update_group: '/blog/group/update'
 };
 
+var app = new Vue({
+    el: '#app',
+    data: function() {
+        return {
+            activeIndex: '3'
+        }
+    },
+    methods: {
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        }
+    }
+});
+
 // 不同深度显示的颜色不同
 var tag_color_dict = {
     '1': {'background-color': 'cornflowerblue', 'color': 'white'},
@@ -32,6 +46,10 @@ $(function (e) {
         if ($target.parent().next()){
             $target.parent().next().slideToggle();
         }
+
+        $target.children().removeClass('el-icon-minus');
+
+        $target.children().addClass('el-icon-plus');
     });
 
     $('.mind-manager-content').delegate('.tag', 'blur', function (e) {
@@ -101,36 +119,36 @@ $(function (e) {
     $('.mind-manager-content').delegate('.mind-manager-btn-add', 'click', function (e) {
         var $target = $(e.currentTarget);
         wc._post(
-                api_dict.create_group,
-                {
-                    parent_group_id: $target.data('group_id'),
-                    group_name: '新节点'
-                },
-                function(res){
-                    if ($target.parent().next()){
+            api_dict.create_group,
+            {
+                parent_group_id: $target.data('group_id'),
+                group_name: '新节点'
+            },
+            function(res){
+                if ($target.parent().next()){
 
-                        var $li = $('<li></li>');
+                    var $li = $('<li></li>');
 
-                        var $input = $(`<input type="text" class="tag" value="新节点">`);
-                        $input.css(tag_color_dict['' + res.data.height]);
+                    var $input = $(`<input type="text" class="tag" value="新节点">`);
+                    $input.css(tag_color_dict['' + res.data.height]);
 
-                        var $tag = $(`<div data-group_id=${res.data.last_id} class="fl" ></div>`);
-                        $tag.append($input);
+                    var $tag = $(`<div data-group_id=${res.data.last_id} class="fl" ></div>`);
+                    $tag.append($input);
 
-                        var $div = $('<div class="mind-manager-operate-group"></div>');
+                    var $div = $('<div class="mind-manager-operate-group"></div>');
 
-                        $div.append(`<button class="mind-manager-btn-add" data-group_id=${res.data.last_id}>add</button>`);
-                        $div.append(`<button class="mind-manager-btn-remove" data-group_id=${res.data.last_id}>remove</button>`);
-                        $div.append('<button class="mind-manager-btn-expand">expand</button>');
+                    $div.append(`<button type="button" data-group_id=${res.data.last_id} class="mind-manager-btn-add el-button el-button--success is-circle" style="padding: 4px"><i class="el-icon-check"></i></button>`);
+                    $div.append(`<button type="button" data-group_id=${res.data.last_id} class="mind-manager-btn-remove el-button el-button--danger is-circle" style="padding: 4px"><i class="el-icon-delete"></i></button>`);
+                    $div.append(`<button type="button" data-group_id=${res.data.last_id} class="mind-manager-btn-expand el-button el-button--primary is-circle" style="padding: 4px"><i class="el-icon-minus"></i></button>`);
 
-                        $li.append($tag);
-                        $li.append($div);
-                        $li.append('<ul></ul>');
+                    $li.append($tag);
+                    $li.append($div);
+                    $li.append('<ul></ul>');
 
-                        $target.parent().next().append($li);
-                    }
+                    $target.parent().next().append($li);
                 }
-            );
+            }
+        );
     });
 
 
@@ -178,10 +196,9 @@ function build_sub_group(group, sub_group_list) {
 
         var $div = $('<div class="mind-manager-operate-group"></div>');
 
-        $div.append(`<button class="mind-manager-btn-add" data-group_id=${sub_group.group_id}>add</button>`);
-        $div.append(`<button class="mind-manager-btn-remove" data-group_id=${sub_group.group_id}>remove</button>`);
-        $div.append('<button class="mind-manager-btn-expand">expand</button>');
-
+        $div.append(`<button type="button" data-group_id=${sub_group.group_id} class="mind-manager-btn-add el-button el-button--success is-circle" style="padding: 4px"><i class="el-icon-check"></i></button>`);
+        $div.append(`<button type="button" data-group_id=${sub_group.group_id} class="mind-manager-btn-remove el-button el-button--danger is-circle" style="padding: 4px"><i class="el-icon-delete"></i></button>`);
+        $div.append(`<button type="button" data-group_id=${sub_group.group_id} class="mind-manager-btn-expand el-button el-button--primary is-circle" style="padding: 4px"><i class="el-icon-minus"></i></button>`);
 
         $li.append($div_tag);
         $li.append($div);

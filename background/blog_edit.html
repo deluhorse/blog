@@ -22,31 +22,17 @@
             </el-menu>
         </el-header>
         <el-main>
-            <el-row class="btn-create-blog">
-                <el-button type="primary">新建博文</el-button>
-            </el-row>
             <el-row>
-                <el-col :span="6" v-for="blog in blog_list" :offset="2" style="margin-top: 20px">
-                    <el-card :body-style="{ padding: '0px' }">
-                        <img src="http://oom122w4d.bkt.clouddn.com/923ce698-e645-7f3c-ce46-6f8322fb" class="image">
-                        <div style="padding: 14px;">
-                            <span class="article-title">{{ blog.title }}</span>
-                            <div class="bottom clearfix">
-                                <el-button type="primary" icon="el-icon-edit" circle @click="query_blog_detail(blog.blog_id)"></el-button>
-                                <el-button type="danger" icon="el-icon-delete" circle></el-button>
-                                <time class="time">{{ blog.create_time }}</time>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
+                <input class="article-title js-article-title" type="text" placeholder="标题">
+                <div class="tool-bar"></div>
+                <div class="editor-content"></div>
             </el-row>
         </el-main>
     </el-container>
 </div>
 <script src="../plugins/jquery.min.js"></script>
 <script src="../config.js"></script>
-<script src="../common.js"></script>
 <script src="../init.js"></script>
-<script src="blog_list.js"></script>
+<script src="blog_edit.js"></script>
 </body>
 </html>

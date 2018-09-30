@@ -10,7 +10,7 @@ var api_dict = {
 
 $(function (e) {
 
-    $('#btn-login').on('click', function () {
+    $('.btn-login').on('click', function () {
         login();
     });
 
@@ -28,6 +28,6 @@ function login(){
             user_name: $('#username').val(),
             password: $('#password').val()
         }, function (res) {
-            location.assign('index.html');
+            location.assign('blog_list.html');
         });
 }

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>登陆页</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="../static/common.css">
 </head>
-<body>
+<body id="login-body">
 <div class="login-content">
     <div class="login-head">
         <!--<img src="http://oom122w4d.bkt.clouddn.com/923ce698-e645-7f3c-ce46-6f8322fb">-->
@@ -18,7 +19,11 @@
         <div style="margin-top: 50px;">
             <span>密&nbsp&nbsp&nbsp码: </span><input id="password" class="login-input" type="password" placeholder="密码">
         </div>
-        <div style="margin-top: 50px;height: 50px;"><input id="btn-login" type="button" value="登陆"></div>
+        <div style="margin-top: 50px;height: 50px;">
+            <button type="button" class="btn-login el-button el-button--primary is-round">
+                <span>登录</span>
+            </button>
+        </div>
     </div>
 </div>
 <script src="../plugins/jquery.min.js"></script>
