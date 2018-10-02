@@ -23,6 +23,9 @@ $(function () {
     });
 
     query_blog_list({});
+
+    show_left_days();
+
 });
 
 /**
@@ -41,4 +44,16 @@ function query_blog_list(params) {
         }
 
     });
+}
+
+function show_left_days() {
+
+    var x = new Date('2019-03-01');
+
+    var today = new Date();
+
+    var left_days = parseInt((x - today) / (1000 * 60 * 60 * 24));
+
+    $('.left-days').html(left_days);
+
 }
