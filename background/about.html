@@ -3,67 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>更新日志</title>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="../static/common.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-<div class="navigation"></div>
-<h1>系统更新日志</h1>
-<ul>
-    <li>
-        <h2>第一期</h2>
-        <ul>
-            <li>
-                <h2>博文管理模块-后台管理(2018-09-01)</h2>
-                <ul>
-                    <li>新建博文</li>
-                    <li>编辑博文</li>
-                    <li>删除博文(逻辑删除)</li>
-                    <li>博文列表</li>
-                </ul>
-            </li>
-            <li>
-                <h2>资源库-后台管理(2018-09-01)</h2>
-                <ul>
-                    <li>上传图片至七牛云</li>
-                    <li>查看图片列表</li>
-                </ul>
-            </li>
-            <li>
-                <h2>博文评论模块-前台展示(2018-09-01)</h2>
-                <ul>
-                    <li>游客对博文进行评论(无需登陆)</li>
-                    <li>游客对其他游客的评论进行回复</li>
-                </ul>
-            </li>
-            <li>
-                <h2>系统维护-系统</h2>
-                <ul>
-                    <li>简单js注入和xss注入预防(2018-09-01)</li>
-                </ul>
-            </li>
-            <li>
-                <h2>优化</h2>
-                <ul>
-                    <li>增加文章阅读人数的更新和显示(2018-09-02)</li>
-                    <li>博文编辑区域样式调整(2018-09-05)</li>
-                    <li>文章内容变动，自动保存(2018-09-05)</li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <h2>第二期</h2>
-        <ul>
-            <li>增加分类管理功能一期(2018-09-12)</li>
-            <li>分组管理样式调整(2018-09-13)</li>
-            <li>增加mobile端样式(2018-09-14)</li>
-            <li>登录回车事件添加(2018-09-18)</li>
-            <li>增加评论和回复的游客头像(2018-09-19)</li>
-            <li>使用bootstrap组件美化UI</li>
-        </ul>
-    </li>
-</ul>
-<script src="../plugins/jquery.min.js"></script>
-<script src="../init.js"></script>
+<div id="app">
+    <el-container>
+        <el-header>
+            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                <el-menu-item index="1"><a href="blog_list.html">博文管理</a></el-menu-item>
+                <el-menu-item index="2"><a href="photo.html">资源库</a></el-menu-item>
+                <el-menu-item index="3"><a href="group.html">分组管理</a></el-menu-item>
+                <el-menu-item index="4"><a href="about.html">更新日志</a></el-menu-item>
+            </el-menu>
+        </el-header>
+        <el-main>
+            <h1>系统更新日志</h1>
+            <ul>
+                <li>
+                    <h2>第一期</h2>
+                    <ul>
+                        <li>
+                            <h2>博文管理模块-后台管理(2018-09-01)</h2>
+                            <ul>
+                                <li>新建博文</li>
+                                <li>编辑博文</li>
+                                <li>删除博文(逻辑删除)</li>
+                                <li>博文列表</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>资源库-后台管理(2018-09-01)</h2>
+                            <ul>
+                                <li>上传图片至七牛云</li>
+                                <li>查看图片列表</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>博文评论模块-前台展示(2018-09-01)</h2>
+                            <ul>
+                                <li>游客对博文进行评论(无需登陆)</li>
+                                <li>游客对其他游客的评论进行回复</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>系统维护-系统</h2>
+                            <ul>
+                                <li>简单js注入和xss注入预防(2018-09-01)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>优化</h2>
+                            <ul>
+                                <li>增加文章阅读人数的更新和显示(2018-09-02)</li>
+                                <li>博文编辑区域样式调整(2018-09-05)</li>
+                                <li>文章内容变动，自动保存(2018-09-05)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h2>第二期</h2>
+                    <ul>
+                        <li>增加分类管理功能一期(2018-09-12)</li>
+                        <li>分组管理样式调整(2018-09-13)</li>
+                        <li>增加mobile端样式(2018-09-14)</li>
+                        <li>登录回车事件添加(2018-09-18)</li>
+                        <li>增加评论和回复的游客头像(2018-09-19)</li>
+                        <li>使用element-ui组件美化UI(2017-10-19)</li>
+                    </ul>
+                </li>
+            </ul>
+        </el-main>
+    </el-container>
+</div>
+<script src="about.js"></script>
 </body>
 </html>
