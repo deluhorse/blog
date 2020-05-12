@@ -17,7 +17,7 @@ if (argvLen < 2) {
 }
 
 var port = parseInt(result.port);
-var host = 'http://localhost:3000';
+var host = 'http://www.deluhorse.top';
 
 for (var i = 0; i < argvLen; i++) {
 
